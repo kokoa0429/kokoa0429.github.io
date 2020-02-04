@@ -3,17 +3,17 @@
 <!-- A-Frameを読み込み -->
 <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 <!-- AR.jsを読み込み -->
-<script src="https://kokoa0429.github.io/ar.js"></script>
+<script src="ar.js"></script>
 
 <body style="margin : 0px; overflow: hidden">
   <!-- AR.jsのデバックとA-FrameのVRボタンを非表示 -->
   <a-scene embedded arjs="debugUIEnabled: false" vr-mode-ui="enabled: false">
       <a-assets>
-        <a-asset-item id="obj" src="https://kokoa0429.github.io/asd.obj"></a-asset-item>
-        <a-asset-item id="mtl" src="https://kokoa0429.github.io/asd.mtl"></a-asset-item>    <!-- objファイル -->
+        <a-asset-item id="obj" src="/asd.obj"></a-asset-item>
+        <a-asset-item id="mtl" src="/asd.mtl"></a-asset-item>    <!-- objファイル -->
       </a-assets>
     <!-- a-markerのtypeにpatternを設定, 作ったpattファイルをurlにを指定 -->
-    <a-marker type="pattern" url="https://kokoa0429.github.io/ptn.patt">
+    <a-marker type="pattern" url="/ptn.patt">
       <!-- 赤い立方体を表示 -->
         <!-- マーカーの場所に OBJ 形式の 3DCG を置く -->
         <a-obj-model
