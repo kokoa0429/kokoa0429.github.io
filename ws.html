@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket Server</title>
+</head>
+<body>
+    <button onclick="live()">死ぬ</button>
+    <button onclick="death()">生きる</button>
+    <pre id="output">死ぬ:0　生きる:0</pre>
+    <script>
+        var dcount = 0;
+        var lcount = 0;
+        var output = document.getElementById('output');
+        var socket = new WebSocket("ws://18.136.207.105:5001");
+        
+        socket.onopen = function() {
+           console.log("ok")
+            socket.send("c");
+        };
+
+        socket.onmessage = function(e) {
+            if(e.data == "d") {
+                dcount += 1;
+            }
+            else if (e.data == "a"){
+                lcount += 1;
+            } else {
+                var obj = JSON.parse(e.data)
+                console.log(obj)
+                dcount = obj.d
+                lcount = obj.a
+            }
+            output.innerHTML = "死ぬ:" + dcount + "　生きる:" + lcount
+        };
+
+        function live() {
+            socket.send("d");
+        };
+
+        function death() {
+            socket.send("a");
+        };
+    </script>
+</body>
+</html>
