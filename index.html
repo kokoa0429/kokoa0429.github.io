@@ -27,7 +27,7 @@
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
-    <div>72213版 Loading, please wait...</div>
+    <div>722asd13版 Loading, please wait...</div>
   </div>
 
   <!-- a-frame scene -->
@@ -37,10 +37,6 @@
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
-    <a-assets> 
-      <a-asset-item id="obj" src="https://ar.iachara.com/asd.obj"></a-asset-item> 
-      <a-asset-item id="mtl" src="https://ar.iachara.com/asd.mtl"></a-asset-item>    <!-- objファイル --> 
-    </a-assets> 
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
@@ -54,7 +50,7 @@
     >
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
-        gltf-model="https://ar.iachara.com/asd.glf"
+        gltf-model="https://ar.iachara.com/asd.glb"
         scale="5 5 5"
         position="50 150 0"
       >
