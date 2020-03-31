@@ -55,11 +55,14 @@
       var request = new XMLHttpRequest();
       request.open("GET", url, true);
       request.send("");
-      request.onload = function() {
-        if (request.status != 200) { // レスポンスの HTTP ステータスを解析
-          alert(`Error ${request.status}: ${request.statusText}`); // e.g. 404: Not Found
+      request.onload = function() { 
+        if (request.status != 200) {
+          //200が返ってきます
         } else { // show the result
-          alert(`Done, got ${request.response}`); // responseText is the server
+          if(JSON.parse(request.response).message == "failed"){
+            alert("キャラシートが存在しないか非公開です。")
+            return
+          }
         }
       };
       //がばがば処理待ち
