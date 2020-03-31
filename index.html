@@ -27,7 +27,7 @@
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
-    <div>7j版 Loading, please wait...</div>
+    <div>7k版 Loading, please wait...</div>
   </div>
 
   <!-- a-frame scene -->
@@ -51,13 +51,13 @@
       smoothTolerance=".01"
       smoothThreshold="5"
     >
-      <a-entity position="0 50 0">
+      <a-entity position="0 5 0">
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
           gltf-model="https://ar.iachara.com/asd.glb"
           scale="50 50 50"
           rotation="90 0 0"
-          animation="property: rotation; to: 90 0 360; loop: true; dur: 5000"
+          animation="property: rotation; to: 90 360 0; loop: true; dur: 5000"
         >
         </a-entity>
         <a-image position="-1 1 0" src="#penguin-sledding"></a-image>
