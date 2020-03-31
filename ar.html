@@ -1,28 +1,4 @@
-<!-- import aframe and then ar.js with image tracking / location based features -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-  // alert("debug")
-  //alert(getParam('id'))
 
-  var id = getParam('id')
-
-  axios.get("https://api.iachara.com/api/char/" + id).then((res) => {
-    document.getElementById('icon').setAttribute('src', res.data.result.icon); 
-    document.getElementById('tree-obj').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".obj"); 
-    document.getElementById('tree-mtl').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".mtl"); 
-    document.getElementById('icon2').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".png"); 
-  })
-
-  function getParam(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-</script>
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
@@ -114,3 +90,38 @@
     <a-entity camera></a-entity>
   </a-scene>
 </body>
+
+<!-- import aframe and then ar.js with image tracking / location based features -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  // alert("debug")
+  //alert(getParam('id'))
+
+  var id = getParam('id')
+
+  axios.get("https://api.iachara.com/api/char/" + id).then((res) => {
+    document.querySelector('#icon').setAttribute('src', res.data.result.icon); 
+    document.querySelector('#tree-obj').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".obj"); 
+    document.querySelector('#tree-mtl').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".mtl"); 
+    document.querySelector('#icon2').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".png"); 
+  })
+
+
+  function sleep(waitMsec) {
+  var startMsec = new Date();
+
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
+}
+
+
+  function getParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+</script>
