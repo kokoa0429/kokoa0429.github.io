@@ -84,9 +84,10 @@
   axios.get("https://api.iachara.com/api/char/" + id).then((res) => {
     console.log(res)
     document.querySelector('#master').innerHTML = 
-    '<a-image scale="50 50 50"  rotation="90 0 0" position="-1 1 0" src="' + res.data.result.icon + '"></a-image>'+
+    '<a-image scale="100 100 100"  rotation="90 0 0" position="-1 1 0" src="' + res.data.result.icon + '"></a-image>'+
     '<a-image scale="50 50 50"  rotation="90 0 0" position="100 1 0" src="https://aprilapi.iachara.com/output/' + id + '.png"></a-image>'+
-    '<a-entity obj-model="obj: url(https://aprilapi.iachara.com/output/' + id + '.obj); mtl: url(https://aprilapi.iachara.com/output/' + id + '.mtl)" scale="50 50 50" rotation="90 0 0"></a-entity>'
+    '<a-entity obj-model="obj: url(https://aprilapi.iachara.com/output/' + id + '.obj); mtl: url(https://aprilapi.iachara.com/output/' + id + '.mtl)"' +
+    'scale="50 50 50" position="100 1 -100" rotation="90 0 0"></a-entity>'
     
     /*
     setAttribute('src', res.data.result.icon); 
