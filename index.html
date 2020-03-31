@@ -40,7 +40,9 @@
       var input_message = document.getElementById("link").value;
       //気合のreplace
       input_message = input_message.replace("https://iachara.com/sns/","");
+      input_message = input_message.replace("https://iachara.com/char/","");
       input_message = input_message.replace("/view","");
+      input_message = input_message.replace("/edit","");
 
       if(!isNumber(Number(input_message))) {
         alert("リンクが間違ってるようです");
