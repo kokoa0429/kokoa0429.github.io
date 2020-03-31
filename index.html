@@ -51,7 +51,13 @@
       request.open("GET", url, true);
       request.send("");
 
-      location.href = "/ar.html?id=" + input_message;
+      //がばがば処理待ち
+      setTimeout(
+        function () {
+          location.href = "/ar.html?id=" + input_message;
+        },
+        "2000"
+      );
     }
 
     function isNumber(value) {
