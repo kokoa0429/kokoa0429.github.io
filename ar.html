@@ -1,6 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+</head>
 
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<body id="app" style="margin : 0px; overflow: hidden;">
 
 <!-- style for the loader -->
 <style>
@@ -24,7 +30,6 @@
   }
 </style>
 
-<body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
     <div>キャラシートのデータを読み込んでいます</div>
@@ -38,11 +43,6 @@
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
   <a-assets>
-    <img id="icon" src="https://firebasestorage.googleapis.com/v0/b/test-25011.appspot.com/o/158242005739736030.png?alt=media"></img>
-    <img id="icon2" src="https://firebasestorage.googleapis.com/v0/b/test-25011.appspot.com/o/158242005739736030.png?alt=media"></img>
-    
-    <a-asset-item id="tree-obj" src="https://aprilapi.iachara.com/output/myfile.obj"></a-asset-item>
-    <a-asset-item id="tree-mtl" src="https://aprilapi.iachara.com/output/myfile.mtl"></a-asset-item>
   </a-assets>
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
@@ -56,31 +56,14 @@
       smoothThreshold="5"
       size="0.2"
     >
-      <a-entity position="0 300 30">
+      <a-entity id="master" position="0 300 30">
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+
         <a-entity
           gltf-model="https://ar.iachara.com/asd.glb"
           scale="50 50 50"
           rotation="90 0 0"
           animation="property: rotation; to: 90 360 0; loop: true; dur: 5000"
-        >
-        </a-entity>
-        <a-image 
-        scale="50 50 50" 
-        rotation="90 0 0"
-        position="-1 1 0" src="#icon"></a-image>
-
-        
-        <a-image 
-        scale="50 50 50" 
-        rotation="90 0 0"
-        position="-1 10 0" src="#icon2"></a-image>
-        
-        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <a-entity
-          obj-model="obj: #tree-obj; mtl: #tree-mtl"
-          scale="50 50 50"
-          rotation="90 0 0"
         >
         </a-entity>
       </a-entity>
@@ -89,7 +72,6 @@
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
   </a-scene>
-</body>
 
 <!-- import aframe and then ar.js with image tracking / location based features -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -100,20 +82,22 @@
   var id = getParam('id')
 
   axios.get("https://api.iachara.com/api/char/" + id).then((res) => {
-    document.querySelector('#icon').setAttribute('src', res.data.result.icon); 
+    console.log(res)
+    document.querySelector('#master').innerHTML = 
+    '<a-image scale="50 50 50"  rotation="90 0 0" position="-1 1 0" src="' + res.data.result.icon + '"></a-image>'+
+    '<a-image scale="50 50 50"  rotation="90 0 0" position="-1 10 0" src="https://aprilapi.iachara.com/output/' + id + '.png"></a-image>'+
+    '<a-entity obj-model="obj: url(https://aprilapi.iachara.com/output/' + id + '.obj); mtl: url(https://aprilapi.iachara.com/output/' + id + '.mtl)" scale="50 50 50" rotation="90 0 0"></a-entity>'
+    
+    /*
+    setAttribute('src', res.data.result.icon); 
     document.querySelector('#tree-obj').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".obj"); 
     document.querySelector('#tree-mtl').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".mtl"); 
     document.querySelector('#icon2').setAttribute('src', "https://aprilapi.iachara.com/output/" + id + ".png"); 
+    
+    var scene = document.querySelector('a-scene');
+    run();
+*/
   })
-
-
-  function sleep(waitMsec) {
-  var startMsec = new Date();
-
-  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
-  while (new Date() - startMsec < waitMsec);
-}
-
 
   function getParam(name, url) {
     if (!url) url = window.location.href;
@@ -125,3 +109,16 @@
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 </script>
+<script>
+  var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
+
+
+</body>
+  
+</html>
