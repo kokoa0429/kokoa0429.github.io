@@ -39,12 +39,12 @@
     function createAR() {
       var input_message = document.getElementById("link").value;
       //気合のreplace
-      input_message = input_message.replace("https://iachara.com/sns/","");
-      input_message = input_message.replace("https://iachara.com/char/","");
-      input_message = input_message.replace("/view","");
-      input_message = input_message.replace("/edit","");
+      input_message = input_message.replace("https://iachara.com/sns/", "");
+      input_message = input_message.replace("https://iachara.com/char/", "");
+      input_message = input_message.replace("/view", "");
+      input_message = input_message.replace("/edit", "");
 
-      if(!isNumber(Number(input_message))) {
+      if (!isNumber(Number(input_message))) {
         alert("リンクが間違ってるようです");
         return;
       }
@@ -55,23 +55,24 @@
       var request = new XMLHttpRequest();
       request.open("GET", url, true);
       request.send("");
-      request.onload = function() { 
+      request.onload = function () {
         if (request.status != 200) {
           //200が返ってきます
         } else { // show the result
-          if(JSON.parse(request.response).message == "failed"){
-            alert("キャラシートが存在しないか非公開です。")
-            return
+          if (JSON.parse(request.response).message == "failed") {
+            alert("キャラシートが存在しないか非公開です。");
+            return;
+          } else {
+            //がばがば処理待ち
+            setTimeout(
+              function () {
+                location.href = "/ar.html?id=" + input_message;
+              },
+              "2000"
+            );
           }
         }
       };
-      //がばがば処理待ち
-      setTimeout(
-        function () {
-          location.href = "/ar.html?id=" + input_message;
-        },
-        "2000"
-      );
     }
 
     function isNumber(value) {
@@ -79,4 +80,5 @@
     }
   </script>
 </body>
+
 </html>

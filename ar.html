@@ -45,10 +45,10 @@
       </a-entity>
 
     </a-nft>
-    
+
     <a-nft type="nft" url="https://ar.iachara.com/002" smooth="true" smoothCount="10" smoothTolerance=".05"
       smoothThreshold="10">
-      <a-entity id="master2" position="0 500 300"  rotation="-40 0 0" scale="2 2 2">
+      <a-entity id="master2" position="0 500 300" rotation="-40 0 0" scale="2 2 2">
 
         <a-entity gltf-model="https://ar.iachara.com/asd.glb" scale="20 20 20" rotation="90 0 0" position="150 0 0"
           animation="property: rotation; to: 90 360 0; loop: true; dur: 5000">
@@ -72,7 +72,7 @@
         '<a-image scale="80 80 80"  rotation="90 0 0" position="100 1 0" src="https://aprilapi.iachara.com/output/' + id + '.png"></a-image>' +
         '<a-entity obj-model="obj: url(https://aprilapi.iachara.com/output/' + id + '.obj); mtl: url(https://aprilapi.iachara.com/output/' + id + '.mtl)"' +
         'scale="50 50 50" position="50 1 50" rotation="90 0 0"></a-entity>'
-        
+
       document.querySelector('#master2').innerHTML +=
         '<a-image scale="80 80 80"  rotation="90 0 0" position="-1 1 0" src="' + res.data.result.icon + '"></a-image>' +
         '<a-image scale="80 80 80"  rotation="90 0 0" position="100 1 0" src="https://aprilapi.iachara.com/output/' + id + '.png"></a-image>' +
